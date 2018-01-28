@@ -7,16 +7,16 @@ import java.util.regex.Pattern;
 
 public class LinesStorage {
 
+    private static String rx_string_of_log = "^\\[\\d{1,2}/\\d{1,2}/\\d{1,2}.+?$"; //  паттерн строки лога, например [1/24/18 14:36:11:322 MSK] 000000ae SystemOut     O 2018-01-24 14:36:11 DEBUG [WebSphere_EJB_NP_Timer_Service.Alarm Pool : 0]: [Consumer id=937510382] got 0 records
+    private static String rx_open_bracket = "^\\{$"; //  паттерн открывающей фигурной скобки
+    private static String rx_close_bracket = "^\\}$"; //  паттерн закрывающей фигурной скобки
 
-    public static String rx_string_of_log = "^\\[\\d{1,2}/\\d{1,2}/\\d{1,2}.+?$"; //  паттерн строки лога, например [1/24/18 14:36:11:322 MSK] 000000ae SystemOut     O 2018-01-24 14:36:11 DEBUG [WebSphere_EJB_NP_Timer_Service.Alarm Pool : 0]: [Consumer id=937510382] got 0 records
-    public static String rx_open_bracket = "^\\{$"; //  паттерн открывающей фигурной скобки
-    public static String rx_close_bracket = "^\\}$"; //  паттерн открывающей фигурной скобки
+    private Pattern pattern_string_of_log = Pattern.compile(rx_string_of_log);
+    private Pattern pattern_open_bracket = Pattern.compile(rx_open_bracket);
+    private Pattern pattern_close_bracket = Pattern.compile(rx_close_bracket);
 
-    Pattern pattern_string_of_log = Pattern.compile(rx_string_of_log);
-    Pattern pattern_open_bracket = Pattern.compile(rx_open_bracket);
-    Pattern pattern_close_bracket = Pattern.compile(rx_close_bracket);
-
-    boolean inside_message = false;
+    private boolean inside_message = false;
+    private boolean have_log_entry = false; // если записали строку лога (для случая если лог обрезанный)
     private long id = -1; // id сообщения
     private String message_location = ""; // откуда и куда сообщение
     private int string_number = 0; // номер строки сообщения
@@ -45,14 +45,16 @@ public class LinesStorage {
 
         Matcher m_string_of_log = pattern_string_of_log.matcher(matching_line);
 
-        if (m_string_of_log.find()) {
+        if (m_string_of_log.find()) { // если строка это запись лога
+            have_log_entry = true;
             addStringOfLog(number_of_string, matching_line);
             return;
         }
 
         Matcher m_open_bracket = pattern_open_bracket.matcher(matching_line);
 
-        if (m_open_bracket.find()) {
+        if (m_open_bracket.find()) { // если строка это {
+            if (!have_log_entry) return; // если до этого строка лога не записана, значит лог разорван и просто выходим
             inside_message = true;
             addMessageStringFromLog(matching_line);
             return;
@@ -60,8 +62,10 @@ public class LinesStorage {
 
         Matcher m_close_bracket = pattern_close_bracket.matcher(matching_line);
 
-        if (m_close_bracket.find()) {
+        if (m_close_bracket.find()) { // если строка это }
+            if (!inside_message) return; // если до этого были не в сообщении (например если лог обрезан) то выходим
             inside_message = false;
+            have_log_entry = false;
             addMessageStringFromLog(matching_line);
             saveResult(result);
             message.clear();
@@ -69,7 +73,7 @@ public class LinesStorage {
             return;
         }
 
-        if (inside_message) {
+        if (inside_message && have_log_entry) { // во всех остальных случаях, если находимся между скобок и до этого записана строка лога
             addMessageStringFromLog(matching_line);
         }
     }

@@ -17,7 +17,7 @@ public class Main {
         String startParseString = "************* End Display Current Environment *************";
         String endParseString = "SET END PARSE STRING IF NEEDED (NOT NULL)";
         LinesStorage linesStorage = new LinesStorage();
-        Map<HashMap, HashMap> result = new HashMap<HashMap, HashMap>();
+        Map<HashMap, HashMap> result = new HashMap<>();
 
 
         try {
