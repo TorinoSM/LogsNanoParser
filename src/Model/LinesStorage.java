@@ -15,7 +15,7 @@ public class LinesStorage {
     private Pattern pattern_open_bracket = Pattern.compile(rx_open_bracket);
     private Pattern pattern_close_bracket = Pattern.compile(rx_close_bracket);
 
-    private boolean inside_message = false;
+    private boolean inside_message = false; // если находимся внутри сообщения (между фигурными скобками)
     private boolean have_log_entry = false; // если записали строку лога (для случая если лог обрезанный)
     private long id = -1; // id сообщения
     private String message_location = ""; // откуда и куда сообщение
@@ -81,4 +81,17 @@ public class LinesStorage {
     private void saveResult(Map result) {
         result.put(new HashMap<>(string_of_log), new HashMap<>(message));
     }
+
+    // TODO:
+    public String getMessageId(){
+
+        return null;
+    }
+
+    // TODO:
+    public String getMessageTime(){
+
+        return null;
+    }
+
 }

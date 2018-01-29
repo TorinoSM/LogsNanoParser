@@ -1,6 +1,7 @@
 package Parser;
 
 import Model.LinesStorage;
+import Model.TimeConverter;
 
 import java.io.*;
 import java.util.HashMap;
@@ -16,8 +17,8 @@ public class Main {
         boolean ready_to_parse = false; // если находимся внутри лога, а не начальной секции или заключительной секции
         String startParseString = "************* End Display Current Environment *************";
         String endParseString = "SET END PARSE STRING IF NEEDED (NOT NULL)";
-        LinesStorage linesStorage = new LinesStorage();
-        Map<HashMap, HashMap> result = new HashMap<>();
+        LinesStorage linesStorage = new LinesStorage(); // хранилище строк
+        Map<HashMap, HashMap> result = new HashMap<>(); // хранилище результата: первая строка - лог, последующие строки - сообщение
 
 
         try {
@@ -55,5 +56,9 @@ public class Main {
         }
 
         result.entrySet().forEach(System.out::println);
+
+
+        System.out.println(TimeConverter.convertTimeToEpoch("2016-01-01T00:00:00.000-0000"));
+
     }
 }

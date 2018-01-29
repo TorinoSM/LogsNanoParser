@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="influxdb-java">
+    <CLASSES>
+      <root url="file://D:/Java_projects/influxdb-java" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://D:/Java_projects/influxdb-java/src/main/java" />
+      <root url="file://D:/Java_projects/influxdb-java/src/test/java" />
+    </SOURCES>
+  </library>
+</component>
