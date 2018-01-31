@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1a863ee7-5a73-4288-850d-8af343129dba" name="Default" comment="add TimeConverter class, some play with InfluxDB">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/influxdb_java.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/TimeConverter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Parser/InfluxTest.java" />
+    <list default="true" id="1a863ee7-5a73-4288-850d-8af343129dba" name="Default" comment="added FileReader class, &#10;parseMessageTime method,&#10;getMessageEpochTime method,&#10;finished convertTimeToEpoch method">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/FileReader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogsNanoParser/Model/LinesStorage.class" afterPath="$PROJECT_DIR$/out/production/LogsNanoParser/Model/LinesStorage.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogsNanoParser/Parser/Main.class" afterPath="$PROJECT_DIR$/out/production/LogsNanoParser/Parser/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LogsNanoParser.iml" afterPath="$PROJECT_DIR$/LogsNanoParser.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/LinesStorage.java" afterPath="$PROJECT_DIR$/src/Model/LinesStorage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/TimeConverter.java" afterPath="$PROJECT_DIR$/src/Model/TimeConverter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Parser/Main.java" afterPath="$PROJECT_DIR$/src/Parser/Main.java" />
     </list>
     <ignored path="LogsNanoParser.iws" />
@@ -49,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/src/Model/TimeConverter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="174">
-              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+              <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -61,11 +58,13 @@
         <entry file="file://$PROJECT_DIR$/src/Model/LinesStorage.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="174">
-              <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+              <caret line="92" column="10" selection-start-line="92" selection-start-column="10" selection-end-line="92" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3657#3658#0" expanded="true" />
-                <element signature="e#3737#3738#0" expanded="true" />
+                <element signature="e#4062#4063#0" expanded="true" />
+                <element signature="e#4142#4143#0" expanded="true" />
+                <element signature="e#4603#4604#0" expanded="true" />
+                <element signature="e#4630#4631#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -98,7 +97,29 @@
         <entry file="file://$PROJECT_DIR$/src/Parser/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="174">
-              <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+              <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Matcher.java" pinned="false" current-in-tab="false">
+        <entry file="jar://D:/Program Files (x86)/Java/jdk1.8.0_112/src.zip!/java/util/regex/Matcher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="535" column="0" selection-start-line="535" selection-start-column="0" selection-end-line="535" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileReader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/FileReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="508">
+              <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -111,26 +132,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="414">
               <caret line="352" column="30" selection-start-line="352" selection-start-column="30" selection-end-line="352" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="URLClassLoader.java" pinned="false" current-in-tab="false">
-        <entry file="jar://D:/Program Files (x86)/Java/jdk1.8.0_112/src.zip!/java/net/URLClassLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="380" column="0" selection-start-line="380" selection-start-column="0" selection-end-line="380" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassLoader.java" pinned="false" current-in-tab="false">
-        <entry file="jar://D:/Program Files (x86)/Java/jdk1.8.0_112/src.zip!/java/lang/ClassLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="356" column="0" selection-start-line="356" selection-start-column="0" selection-end-line="356" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -177,9 +178,10 @@
         <option value="$PROJECT_DIR$/src/okhttp3/internal/connection/RealConnection.java" />
         <option value="$PROJECT_DIR$/LogsNanoParser.iml" />
         <option value="$PROJECT_DIR$/src/Model/TimeToEpochConverter.java" />
+        <option value="$PROJECT_DIR$/src/Parser/InfluxTest.java" />
+        <option value="$PROJECT_DIR$/src/Model/FileReader.java" />
         <option value="$PROJECT_DIR$/src/Model/LinesStorage.java" />
         <option value="$PROJECT_DIR$/src/Parser/Main.java" />
-        <option value="$PROJECT_DIR$/src/Parser/InfluxTest.java" />
         <option value="$PROJECT_DIR$/src/Model/TimeConverter.java" />
       </list>
     </option>
@@ -293,6 +295,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LogsNanoParser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; 1.8 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rt.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="regex" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -443,8 +475,9 @@
     <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.JavaDocs" value="true" />
     <property name="Repository.Attach.Sources" value="true" />
+    <property name="extract.method.default.visibility" value="protected" />
   </component>
-  <component name="RunManager" selected="Application.InfluxTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -965,8 +998,8 @@
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Application.InfluxTest" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="1" class="java.lang.String" itemvalue="Application.InfluxTest" />
       </list>
     </recent_temporary>
   </component>
@@ -988,7 +1021,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1517153602542</updated>
-      <workItem from="1517153604090" duration="34114000" />
+      <workItem from="1517153604090" duration="48100000" />
     </task>
     <task id="LOCAL-00001" summary="add new project">
       <created>1517181279069</created>
@@ -1004,11 +1037,18 @@
       <option name="project" value="LOCAL" />
       <updated>1517182159361</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add TimeConverter class, some play with InfluxDB">
+      <created>1517266079850</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1517266079850</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34114000" />
+    <option name="totallyTimeSpent" value="48100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1056" extended-state="6" />
@@ -1021,7 +1061,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21993127" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28064147" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -1056,11 +1096,12 @@
     <MESSAGE value="add new project" />
     <MESSAGE value="add conditions for breaking log" />
     <MESSAGE value="add TimeConverter class, some play with InfluxDB" />
-    <option name="LAST_COMMIT_MESSAGE" value="add TimeConverter class, some play with InfluxDB" />
+    <MESSAGE value="added FileReader class, &#10;parseMessageTime method,&#10;getMessageEpochTime method,&#10;finished convertTimeToEpoch method" />
+    <option name="LAST_COMMIT_MESSAGE" value="added FileReader class, &#10;parseMessageTime method,&#10;getMessageEpochTime method,&#10;finished convertTimeToEpoch method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="17" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1306,10 +1347,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://D:/Program Files (x86)/Java/jdk1.8.0_112/src.zip!/java/util/regex/Matcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="535" column="0" selection-start-line="535" selection-start-column="0" selection-end-line="535" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/FileReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/TimeConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1319,7 +1378,7 @@
     <entry file="file://$PROJECT_DIR$/src/Parser/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
-          <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+          <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1329,11 +1388,13 @@
     <entry file="file://$PROJECT_DIR$/src/Model/LinesStorage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
-          <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+          <caret line="92" column="10" selection-start-line="92" selection-start-column="10" selection-end-line="92" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3657#3658#0" expanded="true" />
-            <element signature="e#3737#3738#0" expanded="true" />
+            <element signature="e#4062#4063#0" expanded="true" />
+            <element signature="e#4142#4143#0" expanded="true" />
+            <element signature="e#4603#4604#0" expanded="true" />
+            <element signature="e#4630#4631#0" expanded="true" />
           </folding>
         </state>
       </provider>

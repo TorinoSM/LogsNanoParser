@@ -1,64 +1,40 @@
 package Parser;
 
+import Model.FileReader;
 import Model.LinesStorage;
 import Model.TimeConverter;
 
-import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
 
-    private final static String PATH_TO_LOG = "C:\\Users\\name2015\\Desktop\\logs\\20180124 1454\\SM20\\SystemOut.log";
+    private final static String path_to_log = "C:\\Users\\name2015\\Desktop\\logs\\20180124 1454\\SM20\\SystemOut.log";
+
+    private final static String startParseString = "************* End Display Current Environment *************";
+    private final static String endParseString = "SET END PARSE STRING IF NEEDED (NOT NULL)";
+
 
     public static void main(String[] args) {
 
-        int line_number = 0;
-        boolean ready_to_parse = false; // если находимся внутри лога, а не начальной секции или заключительной секции
-        String startParseString = "************* End Display Current Environment *************";
-        String endParseString = "SET END PARSE STRING IF NEEDED (NOT NULL)";
         LinesStorage linesStorage = new LinesStorage(); // хранилище строк
-        Map<HashMap, HashMap> result = new HashMap<>(); // хранилище результата: первая строка - лог, последующие строки - сообщение
+        Map<HashMap, HashMap> result = new HashMap<>(); // хранилище результата: первый элемент - лог, последующие элементы - строки сообщения
 
+        FileReader.readLogFiles(path_to_log, startParseString, endParseString, linesStorage, result);
 
-        try {
-            File file = new File(PATH_TO_LOG);
-            FileReader fr = new FileReader(file);
-            BufferedReader reader = new BufferedReader(fr);
-            String line;
-//            int i=0; // debug
-            while (true) { // debug i < 200
-                line = reader.readLine();
-                line_number++;
-                if (line == null) { // если конец файла то прерываем цикл
-                    break;
-                } else {
-                    if (line.startsWith(startParseString)) {
-                        ready_to_parse = true; // если дошли до строчки "************* End Display Current Environment *************" то начинаем парсить со следующей строки лога
-                        continue; // continue while
-                    }
-                    if (line.startsWith(endParseString) && ready_to_parse) {
-                        ready_to_parse = false; // если дошли до строчки endParseString и до этого парсинг был включен то заканчиваем парсить строки
-                        break; // break while
-                    }
-                    if (ready_to_parse) { // если парсинг включен то парсим строку
-                        linesStorage.parseLine(line_number, line, result);
-                    }
-                }
-//                i++; // debug
-            }
+        // номер строки, время, id, наименование системы (направление сообщения)
+        for (HashMap.Entry<HashMap, HashMap> entry : result.entrySet()) {
+            HashMap<String, String> log_entry = entry.getKey(); // мапа со строкой лога
+            HashMap<String, String> message_entry = entry.getValue(); // мапа со строками сообщения
 
-        } catch (FileNotFoundException e) {
-            System.out.println("File " + PATH_TO_LOG + " not found");
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            linesStorage.getMessageEpochTime(log_entry);
+
         }
 
         result.entrySet().forEach(System.out::println);
 
-
-        System.out.println(TimeConverter.convertTimeToEpoch("2016-01-01T00:00:00.000-0000"));
+        System.out.println(TimeConverter.convertTimeToEpoch("01/24/18 14:54:03:964 MSK"));
 
     }
+
 }
