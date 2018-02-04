@@ -40,9 +40,6 @@ public class InfluxTest {
 
         }
         influxDB.close();
-
-
-
-
     }
+
 }
