@@ -10,7 +10,7 @@ public class Point {
     private String direction;
     private Integer string_number;
 
-    Long getDifference_timestamp() {
+    public Long getDifference_timestamp() {
         return difference_timestamp;
     }
 
@@ -46,7 +46,7 @@ public class Point {
         return result;
     }
 
-    Point(String id, Long timestamp, String app_server, String direction, Integer string_number, Long difference_timestamp) {
+    public Point(String id, Long timestamp, String app_server, String direction, Integer string_number, Long difference_timestamp) {
 
         this.id = id;
         this.timestamp = timestamp;
@@ -56,7 +56,7 @@ public class Point {
         this.string_number = string_number;
     }
 
-    String getId() {
+    public String getId() {
 
         return id;
     }
@@ -65,7 +65,7 @@ public class Point {
         this.id = id;
     }
 
-    Long getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 
@@ -73,7 +73,7 @@ public class Point {
         this.timestamp = timestamp;
     }
 
-    String getApp_server() {
+    public String getApp_server() {
         return app_server;
     }
 
@@ -81,7 +81,7 @@ public class Point {
         this.app_server = app_server;
     }
 
-    String getDirection() {
+    public String getDirection() {
         return direction;
     }
 
@@ -89,7 +89,7 @@ public class Point {
         this.direction = direction;
     }
 
-    Integer getString_number() {
+    public Integer getString_number() {
         return string_number;
     }
 

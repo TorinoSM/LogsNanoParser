@@ -4,9 +4,7 @@ import org.apache.commons.math3.stat.descriptive.rank.Max;
 import org.apache.commons.math3.stat.descriptive.rank.Median;
 import org.apache.commons.math3.stat.descriptive.rank.Min;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static Parser.Main.*;
 
@@ -51,8 +49,8 @@ public class PrepareOutput {
 
     public static void calculateDifference() {
 
-        ArrayList<Point> left;
-        ArrayList<Point> right;
+        List<Point> left;
+        List<Point> right;
 
         if (in_points_storage.size() > out_points_storage.size()) { // кто размером больше, то для join'a левой таблицей
             left = in_points_storage;
@@ -88,14 +86,12 @@ public class PrepareOutput {
         alone_points_storage.addAll(right); // добавить остатки от правой коллекции в alone_points_storage(раз точки не удалены значит им не нашлась пара в левой коллекции)
     }
 
-    public static void calculateDifferenceStatistics() { //TODO: реализовать вычисление статистики для каждого таймштампа входящих сообщений
+    public static void calculateDifferenceStatistics(Long dpt, ArrayList<Long> difference_points_timestamp_array) {
 
-        double[] ids = new double[difference_points_storage.size()];
+        double[] ids = new double[difference_points_timestamp_array.size()];
 
-        for (int i = 0; i < difference_points_storage.size(); i++) {
-            // если timestamp не равен предыдущему тогда вычисляй статистику, записывай ее в arraylist вместе с таймштампом (или сразу шли в influx) TODO:***************************
-
-            ids[i] = Double.valueOf(difference_points_storage.get(i).getDifference_timestamp());
+        for (int i = 0; i < difference_points_timestamp_array.size(); i++) {
+            ids[i] = Double.valueOf(difference_points_timestamp_array.get(i));
         }
         Median median = new Median();
         double median_value = median.evaluate(ids);
@@ -103,6 +99,7 @@ public class PrepareOutput {
         double max_value = max.evaluate(ids);
         Min min = new Min();
         double min_value = min.evaluate(ids);
+        influx_points_storage.add(new InfluxPoint(dpt, min_value, max_value, median_value));
     }
 
 }

@@ -68,7 +68,7 @@ class Parser {
     }
 
 
-    private static boolean applyFilterToLine(String matching_line) { // добавляй в if проверку паттернов для всех строк которые нужно сохранять + сами методы для проверки
+    static boolean applyFilterToLine(String matching_line) { // добавляй в if проверку паттернов для всех строк которые нужно сохранять + сами методы для проверки
 
         if (matchSbermessSendMessage(matching_line) ||
                 matchSbermessReceiveMessage(matching_line))
